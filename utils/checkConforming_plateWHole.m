@@ -1,4 +1,4 @@
-function [PHTelem,meshInfo] = checkConforming_plateWHole(PHTelem,controlPts,geometry,meshInfo)
+function [PHTelem,meshInfo,controlPts] = checkConforming_plateWHole(PHTelem,controlPts,geometry,meshInfo)
 %checks that the patches are conforming and if needed makes them conforming through mesh refinement
 %patchBoundaries format:
 % patchA, patchB, edgeA, edgeB
@@ -44,7 +44,7 @@ while keepChecking
                 keepChecking = 1;
                 numNewPatches = length(indexQuadA);
                 disp(['In patch ', num2str(patchA), ' refining ',num2str(numNewPatches), ' quadruplets to keep conformity with patch ', num2str(patchB)])
-                [meshInfo.quadList{patchA},PHTelem{patchA},controlPts{patchA},meshInfo.dimBasis(patchA)] = refineMeshIso(quadRefA,quadListA,PHTelem{patchA},controlPts{patchA},p,q,dimBasis(patchA));
+                [meshInfo.quadList{patchA},PHTelem{patchA},controlPts{patchA},meshInfo.dimBasis(patchA)] = refineMeshIso(quadRefA,quadListA,PHTelem{patchA},controlPts{patchA},p,q,meshInfo.dimBasis(patchA));
                 numberElements = numberElements + (size(meshInfo.quadList{patchA},1) - size(quadListA,1))*4;
             end
         
@@ -52,7 +52,7 @@ while keepChecking
                 keepChecking = 1;
                 numNewPatches = length(indexQuadB);
                 disp(['In patch ', num2str(patchB), ' refining ',num2str(numNewPatches), ' quadruplets to keep conformity with patch ', num2str(patchA)])
-                [meshInfo.quadList{patchB},PHTelem{patchB},controlPts{patchB},meshInfo.dimBasis(patchB)] = refineMeshIso(quadRefB,quadListB,PHTelem{patchB},controlPts{patchB},p,q,dimBasis(patchB));
+                [meshInfo.quadList{patchB},PHTelem{patchB},controlPts{patchB},meshInfo.dimBasis(patchB)] = refineMeshIso(quadRefB,quadListB,PHTelem{patchB},controlPts{patchB},p,q,meshInfo.dimBasis(patchB));
                 numberElements = numberElements + (size(meshInfo.quadList{patchB},1) - size(quadListB,1))*4;
             end
         end
