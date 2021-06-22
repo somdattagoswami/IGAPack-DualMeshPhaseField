@@ -18,12 +18,12 @@ elseif example == "singleEdgeTension_distort"
     
 elseif example == "plateWHoles"
     [PHTelem,controlPts,meshInfo] = initMesh_plateWHole(geometry);
-    [PHTelem,meshInfo] = checkConforming_plateWHole(PHTelem,controlPts,geometry,meshInfo);
+    [PHTelem,meshInfo,controlPts] = checkConforming_plateWHole(PHTelem,controlPts,geometry,meshInfo);
     [PHTelem,meshInfo] = zipConforming(PHTelem,geometry,meshInfo);
     
 elseif example == "threePointBending"
     [PHTelem,controlPts,meshInfo] = initMesh_3ptPlate(geometry);
-    [PHTelem,meshInfo] = checkConforming(PHTelem,geometry,meshInfo);
+    [PHTelem,meshInfo,controlPts] = checkConforming_plateWHole(PHTelem,controlPts,geometry,meshInfo);
     [PHTelem,meshInfo] = zipConforming(PHTelem,geometry,meshInfo);
     
 elseif example == "tensileCube"
