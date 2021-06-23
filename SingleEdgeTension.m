@@ -72,7 +72,7 @@ for istep = 1:Integ.nstep
             solPhiPatch = transferFieldGlob2Loc(PhPHTelem,PhmeshInfo,Phidisp);
             refFlag = 1;
             [PhPHTelem,PhcontrolPts,PhmeshInfo,Phidisp,PhmarkRef] = refinePhase(markRef,geometry,solPhiPatch,PhcontrolPts,PhPHTelem,PhmeshInfo);
-            title(['Modified Phase Field Mesh for Loadstep', num2str(istep) ,' and Iteration ', num2str(miter),'.']);
+            title(['Phase Field Mesh for Loadstep', num2str(istep) ,' and Iteration ', num2str(miter),'.']);
             PhBasis = cartdevRefinement(PhPHTelem,PhcontrolPts,geometry,PhBasis,PhmarkRef);
             fenerg = history_tensile(PhBasis,Fract,PhPHTelem,geometry);
             clear stiffUU
@@ -81,7 +81,7 @@ for istep = 1:Integ.nstep
         if refFlag
             if sum([quadRef{:}])
                 [EPHTelem,EcontrolPts,EmeshInfo,EmarkRef] = refineElastic(quadRef,EmeshInfo,EPHTelem,EcontrolPts,geometry);
-                title(['Modified Elastic Mesh for Loadstep ',num2str(istep),' and Iteration ',num2str(miter),'.']);
+                title(['Elastic Mesh for Loadstep ',num2str(istep),' and Iteration ',num2str(miter),'.']);
                 Edirichlet = initialBC_tensile(EPHTelem,geometry);
                 EBasis = cartdevRefinement(EPHTelem,EcontrolPts,geometry,EBasis,EmarkRef);
             else
@@ -106,9 +106,9 @@ for istep = 1:Integ.nstep
         fprintf('Done step: %5d\n',istep);
         plotDispPhaseTransfer2D(PhPHTelem,EPHTelem,PhcontrolPts,EcontrolPts,Phidisp,Edisp,PhmeshInfo,geometry,Mater);
         plot1 = subplot(2,2,1);
-        title(['Elastic Mesh for Loadstep ',num2str(istep),' and Iteration ',num2str(miter),'.']);
+        title(['Elastic Mesh for Loadstep ',num2str(istep),'.']);
         plot2 = subplot(2,2,2);
-        title(['Phase Field Mesh for Loadstep ', num2str(istep) ,' and Iteration ', num2str(miter),'.']);
+        title(['Phase Field Mesh for Loadstep ', num2str(istep) ,'.']);
         if savePlot == '1'
             saveas(hFig, ['Loadstep', num2str(istep),'.png'])
         end
