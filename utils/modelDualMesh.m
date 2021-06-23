@@ -8,22 +8,22 @@ if example == "elasticBar"
     
 elseif example == "singleEdgeTension" || example == "singleEdgeShear"
     [PHTelem,controlPts,meshInfo] = initMesh_tensile(geometry);
-    [PHTelem,meshInfo] = checkConforming(PHTelem,geometry,meshInfo);
+    [PHTelem,controlPts,meshInfo] = checkConforming(PHTelem,controlPts,meshInfo,geometry);
     [PHTelem,meshInfo] = zipConforming(PHTelem,geometry,meshInfo);
     
 elseif example == "singleEdgeTension_distort"
     [PHTelem,controlPts,meshInfo] = initMesh_tensile_distort(geometry);
-    [PHTelem,meshInfo] = checkConforming(PHTelem,geometry,meshInfo);
+    [PHTelem,controlPts,meshInfo] = checkConforming(PHTelem,controlPts,meshInfo,geometry);
     [PHTelem,meshInfo] = zipConforming(PHTelem,geometry,meshInfo);
     
 elseif example == "plateWHoles"
     [PHTelem,controlPts,meshInfo] = initMesh_plateWHole(geometry);
-    [PHTelem,meshInfo,controlPts] = checkConforming_plateWHole(PHTelem,controlPts,geometry,meshInfo);
+    [PHTelem,controlPts,meshInfo] = checkConforming(PHTelem,controlPts,meshInfo,geometry);
     [PHTelem,meshInfo] = zipConforming(PHTelem,geometry,meshInfo);
     
 elseif example == "threePointBending"
     [PHTelem,controlPts,meshInfo] = initMesh_3ptPlate(geometry);
-    [PHTelem,meshInfo,controlPts] = checkConforming_plateWHole(PHTelem,controlPts,geometry,meshInfo);
+    [PHTelem,controlPts,meshInfo] = checkConforming(PHTelem,controlPts,meshInfo,geometry);
     [PHTelem,meshInfo] = zipConforming(PHTelem,geometry,meshInfo);
     
 elseif example == "tensileCube"
